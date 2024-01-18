@@ -1,3 +1,6 @@
+# emailSchedulerClient
+Angular project for a GUI that allows the user to send/schedule emails
+
 # Client
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
