@@ -1,1 +1,14 @@
 <p>create-email works!</p>
+
+<form class="container" [formGroup]="emailConstructor" (ngSubmit)="onSubmit()">
+  <label for="send-to">Send to: </label>
+  <input id="send-to" type="text" formControlName="recipient" />
+
+  <label for="subject">Subject: </label>
+  <input id="subject" type="text" formControlName="subject" />
+
+  <label for="body">Body: </label>
+  <input id="body" type="text" formControlName="body" />
+
+  <button type="submit" [disabled]="!emailConstructor.valid">Submit</button>
+</form>
