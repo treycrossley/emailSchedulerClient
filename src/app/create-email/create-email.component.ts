@@ -37,7 +37,7 @@ export class CreateEmailComponent {
         variables: {
           recipient: this.emailConstructor.value.recipient,
           subject: this.emailConstructor.value.subject,
-          body: this.emailConstructor.value.body,
+          text: this.emailConstructor.value.body,
         },
       })
       .subscribe(
