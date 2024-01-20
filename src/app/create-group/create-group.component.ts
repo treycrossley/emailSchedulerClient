@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-create-group',
   standalone: true,
   imports: [],
   templateUrl: './create-group.component.html',
-  styleUrl: './create-group.component.scss'
+  styleUrl: './create-group.component.scss',
 })
-export class CreateGroupComponent {
-
-}
+export class CreateGroupComponent {}

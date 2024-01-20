@@ -1,15 +1,13 @@
 <nav class="pill-group">
-        @for (item of [
-          { title: 'Send Email', route: '/create-email'},
-          { title: 'Create Email Group', route: '/create-group' },
-        ]; track item.title) {
-          <a
-            class="pill button"
-            routerLink={{item.route}}
-            
-          >
-            <span>{{ item.title }}</span>
-            
-        </a>
-        }
+  @for (
+    item of [
+      { title: 'Send Email', route: '/create-email' },
+      { title: 'Create Email Group', route: '/create-group' }
+    ];
+    track item.title
+  ) {
+    <a class="pill button" routerLink="{{ item.route }}">
+      <span>{{ item.title }}</span>
+    </a>
+  }
 </nav>
