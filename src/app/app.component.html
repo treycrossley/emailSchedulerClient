@@ -4,27 +4,16 @@
       
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
+      <router-outlet></router-outlet>
     </div>
+
+    
     
     <div class="divider" role="separator" aria-label="Divider"></div>
 
 
     <div class="right-side">
-      <div class="pill-group">
-        @for (item of [
-          { title: 'Send Now'},
-          { title: 'Schedule Send', },
-        ]; track item.title) {
-          <button
-            class="pill"
-            target="_blank"
-            rel="noopener"
-          >
-            <span>{{ item.title }}</span>
-            
-        </button>
-        }
-      </div>
+      <app-sidebar></app-sidebar>
       
     </div>
   </div>
