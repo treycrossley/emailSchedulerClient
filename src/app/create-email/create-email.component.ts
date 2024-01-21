@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { CommonModule } from '@angular/common'
+import { SingleFileUploadComponent } from '../single-file-upload/single-file-upload.component'
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
@@ -26,6 +27,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     MatToolbarModule,
     CommonModule,
     MatProgressSpinnerModule,
+    SingleFileUploadComponent,
   ],
   templateUrl: './create-email.component.html',
   styleUrls: ['../app.component.scss', './create-email.component.scss'],
@@ -35,12 +37,23 @@ export class CreateEmailComponent {
   isErr: boolean = false
   showEmailForm: boolean = true
   loading: boolean = false
+  file: File | undefined = undefined // Variable to store file
 
   constructor(private apollo: Apollo) {}
 
   SEND_EMAILS = gql`
-    mutation sendEmail($recipient: String, $subject: String, $text: String) {
-      sendEmail(recipient: $recipient, subject: $subject, text: $text) {
+    mutation sendEmail(
+      $recipient: String
+      $subject: String
+      $text: String
+      $attachments: [Attachment]
+    ) {
+      sendEmail(
+        recipient: $recipient
+        subject: $subject
+        text: $text
+        attachments: $attachments
+      ) {
         code
         message
         success
@@ -57,8 +70,29 @@ export class CreateEmailComponent {
     body: new FormControl('', [Validators.required]),
   })
 
-  onSubmit() {
+  getFile(file: File): void {
+    this.file = file
+  }
+
+  file2Base64 = (file: File): Promise<string> => {
+    return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result?.toString() || '')
+      reader.onerror = error => reject(error)
+    })
+  }
+
+  async onSubmit() {
     this.loading = true
+
+    const files = []
+    let path = null
+    if (this.file) {
+      path = await this.file2Base64(this.file)
+      files.push({ filename: this.file?.name, path: path, encoding: 'base64' })
+    }
+
     this.apollo
       .mutate({
         mutation: this.SEND_EMAILS,
@@ -66,6 +100,7 @@ export class CreateEmailComponent {
           recipient: this.emailConstructor.value.recipient,
           subject: this.emailConstructor.value.subject,
           text: this.emailConstructor.value.body,
+          attachments: files,
         },
       })
       .subscribe(

@@ -58,6 +58,11 @@
           </mat-form-field>
         </div>
 
+        <div>
+          <app-single-file-upload
+            (notify)="getFile($event)"></app-single-file-upload>
+        </div>
+
         <div class="form-element">
           <button
             mat-raised-button
