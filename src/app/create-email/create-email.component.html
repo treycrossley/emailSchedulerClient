@@ -1,14 +1,51 @@
-<p>create-email works!</p>
+<div class="container">
+  <h1 class="title">Send an email!</h1>
 
-<form class="container" [formGroup]="emailConstructor" (ngSubmit)="onSubmit()">
-  <label for="send-to">Send to: </label>
-  <input id="send-to" type="text" formControlName="recipient" />
+  <form [formGroup]="emailConstructor" (ngSubmit)="onSubmit()" class="form">
+    <div>
+      <mat-form-field
+        hintLabel="Can add multiple recipients separated by commas"
+        class="form-element">
+        <mat-label>Send to:</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="yourname@example.com"
+          formControlName="recipient" />
+      </mat-form-field>
+    </div>
 
-  <label for="subject">Subject: </label>
-  <input id="subject" type="text" formControlName="subject" />
+    <div>
+      <mat-form-field class="form-element">
+        <mat-label>Email Subject</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Hi Hey There Hello"
+          formControlName="subject" />
+      </mat-form-field>
+    </div>
 
-  <label for="body">Body: </label>
-  <input id="body" type="text" formControlName="body" />
+    <div>
+      <mat-form-field class="form-element">
+        <mat-label>Email text:</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="I just want you to know that I love you"
+          formControlName="body" />
+      </mat-form-field>
+    </div>
 
-  <button type="submit" [disabled]="!emailConstructor.valid">Submit</button>
-</form>
+    <div class="form-element">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="button"
+        [disabled]="!emailConstructor.valid">
+        Submit Form
+      </button>
+    </div>
+  </form>
+</div>

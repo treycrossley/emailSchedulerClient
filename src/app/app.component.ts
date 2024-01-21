@@ -3,6 +3,9 @@ import { RouterOutlet } from '@angular/router'
 import { CreateEmailComponent } from './create-email/create-email.component'
 import { CreateGroupComponent } from './create-group/create-group.component'
 import { SidebarComponent } from './sidebar/sidebar.component'
+import { HeaderComponent } from './header/header.component'
+
+import { MatToolbarModule } from '@angular/material/toolbar'
 
 @Component({
   selector: 'app-root',
@@ -14,6 +17,8 @@ import { SidebarComponent } from './sidebar/sidebar.component'
     CreateEmailComponent,
     CreateGroupComponent,
     SidebarComponent,
+    MatToolbarModule,
+    HeaderComponent,
   ],
 })
 export class AppComponent {

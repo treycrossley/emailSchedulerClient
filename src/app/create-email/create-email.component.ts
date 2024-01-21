@@ -1,13 +1,24 @@
 import { Component } from '@angular/core'
 import { FormControl, ReactiveFormsModule, FormGroup } from '@angular/forms'
 import { Apollo, gql } from 'apollo-angular'
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field'
+
+import { MatButtonModule } from '@angular/material/button'
+import { MatToolbarModule } from '@angular/material/toolbar'
 
 @Component({
   selector: 'app-create-email',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatToolbarModule,
+  ],
   templateUrl: './create-email.component.html',
-  styleUrl: './create-email.component.scss',
+  styleUrls: ['../app.component.scss', './create-email.component.scss'],
 })
 export class CreateEmailComponent {
   constructor(private apollo: Apollo) {}
@@ -41,7 +52,7 @@ export class CreateEmailComponent {
         },
       })
       .subscribe(
-        ({ data }: any) => {
+        ({ data }) => {
           console.log(data)
         },
         err => {

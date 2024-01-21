@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" class="flex-container">
+  <div><span>Email GUI</span></div>
+  @for (route of routes; track route) {
+    <div class="nav-container">
+      <button mat-button routerLink="{{ route.route }}">
+        <span>{{ route.title }}</span>
+      </button>
+    </div>
+  }
+</mat-toolbar>

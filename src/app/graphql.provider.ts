@@ -4,6 +4,7 @@ import { ApplicationConfig, inject } from '@angular/core'
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core'
 
 const uri = 'http://localhost:4000/graphql' // <-- add the URL of the GraphQL server here
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function apolloOptionsFactory(): ApolloClientOptions<any> {
   const httpLink = inject(HttpLink)
   return {

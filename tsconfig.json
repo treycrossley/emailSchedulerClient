@@ -18,17 +18,13 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom",
-      "esnext.asynciterable"
-    ],
-    "allowSyntheticDefaultImports": true
+    "lib": ["ES2022", "dom", "esnext.asynciterable"],
+    "allowSyntheticDefaultImports": true,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+    "strictTemplates": true,
+  },
 }
