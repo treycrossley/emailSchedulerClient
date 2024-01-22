@@ -16,6 +16,8 @@ import { SingleFileUploadComponent } from '../single-file-upload/single-file-upl
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
+import { ValidateEmailList } from '../services/email.validator'
+
 @Component({
   selector: 'app-create-email',
   standalone: true,
@@ -62,10 +64,7 @@ export class CreateEmailComponent {
   `
 
   emailConstructor = new FormGroup({
-    recipient: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'), //email Validation
-    ]),
+    recipient: new FormControl('', [Validators.required, ValidateEmailList]),
     subject: new FormControl('', [Validators.required]),
     body: new FormControl('', [Validators.required]),
   })

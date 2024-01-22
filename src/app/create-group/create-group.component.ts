@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { Apollo, gql } from 'apollo-angular'
 
+import { ValidateEmailList } from '../services/email.validator'
+
 @Component({
   selector: 'app-create-group',
   standalone: true,
@@ -32,8 +34,6 @@ export class CreateGroupComponent {
   showGroupForm: boolean = true
   loading: boolean = false
 
-  emailRegex = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'
-
   constructor(private apollo: Apollo) {}
 
   CREATE_GROUP = gql`
@@ -50,7 +50,7 @@ export class CreateGroupComponent {
     name: new FormControl('', [Validators.required]),
     recipient: new FormControl('', [
       Validators.required,
-      Validators.pattern(this.emailRegex), //email Validation
+      ValidateEmailList, //email Validation
     ]),
   })
 
