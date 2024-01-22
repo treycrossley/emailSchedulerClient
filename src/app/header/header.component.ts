@@ -25,5 +25,6 @@ export class HeaderComponent {
   routes = [
     { title: 'Send Email', route: '/create-email' },
     { title: 'Create Email Group', route: '/create-group' },
+    { title: 'Edit Email Groups', route: '/edit-group' },
   ]
 }
