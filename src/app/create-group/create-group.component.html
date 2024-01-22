@@ -1,1 +1,63 @@
-<p>create-group works!</p>
+<div>
+  <div *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <div *ngIf="groupCreated">
+      <h1>Success</h1>
+      <p>
+        Your group was created succesffuly. Please refresh the page to make
+        another
+      </p>
+    </div>
+
+    <div *ngIf="isErr">
+      <h1>Failure</h1>
+      <p>Something went wrong... Welp that sucks</p>
+    </div>
+
+    <div *ngIf="showGroupForm" class="container">
+      <h1 class="title">Create an email group!</h1>
+
+      <form [formGroup]="groupConstructor" (ngSubmit)="onSubmit()" class="form">
+        <div>
+          <mat-form-field class="form-element">
+            <mat-label>Group Name:</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="my bestest buddies"
+              required
+              formControlName="name" />
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field
+            hintLabel="Can add multiple recipients separated by commas"
+            class="form-element">
+            <mat-label>Send to:</mat-label>
+            <input
+              matInput
+              type="email"
+              placeholder="yourname@example.com"
+              required
+              formControlName="recipient" />
+          </mat-form-field>
+        </div>
+
+        <div class="form-element">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="button"
+            [disabled]="!groupConstructor.valid">
+            Submit Form
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
