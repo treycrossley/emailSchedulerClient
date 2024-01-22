@@ -19,7 +19,7 @@
     <ng-container matColumnDef="functions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon (click)="edit($event, element)">edit</mat-icon>
+        <mat-icon (click)="modalOpener(element)">edit</mat-icon>
         <mat-icon (click)="delete($event, element)">delete</mat-icon>
       </td>
     </ng-container>
