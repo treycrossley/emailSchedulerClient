@@ -5,4 +5,5 @@ import { CreateGroupComponent } from './create-group/create-group.component'
 export const routes: Routes = [
   { path: 'create-email', component: CreateEmailComponent },
   { path: 'create-group', component: CreateGroupComponent },
+  { path: '', redirectTo: '/create-email', pathMatch: 'full' },
 ]
