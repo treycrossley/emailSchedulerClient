@@ -43,7 +43,6 @@ export class EditGroupComponent implements OnInit, OnDestroy {
       .valueChanges.subscribe(({ data, loading }) => {
         this.loading = loading
         this.groupList = data.getGroups
-        console.log(data.getGroups)
       })
   }
 
@@ -51,10 +50,32 @@ export class EditGroupComponent implements OnInit, OnDestroy {
     this.querySubscription.unsubscribe()
   }
 
-  edit = (event: Event) => {
-    console.log(event)
+  edit = (event: Event, element: group) => {
+    console.log(event, element)
   }
-  delete = (event: Event) => {
-    console.log(event)
+
+  async delete(event: Event, element: group) {
+    this.groupList = this.groupList.filter(e => {
+      e.id != element.id
+    })
+
+    this.apollo
+      .mutate({
+        mutation: gql`
+          mutation {
+            deleteGroup(id: "${element.id}") {
+              success
+              message
+              code
+            }
+          }
+        `,
+      })
+      .subscribe((data: any) => {
+        data = data.data
+        console.log(data)
+        console.log(this.groupList)
+        this.loading = false
+      })
   }
 }

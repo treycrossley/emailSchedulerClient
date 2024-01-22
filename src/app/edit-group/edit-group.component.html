@@ -19,8 +19,8 @@
     <ng-container matColumnDef="functions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon (click)="edit($event)">edit</mat-icon>
-        <mat-icon (click)="delete($event)">delete</mat-icon>
+        <mat-icon (click)="edit($event, element)">edit</mat-icon>
+        <mat-icon (click)="delete($event, element)">delete</mat-icon>
       </td>
     </ng-container>
 
