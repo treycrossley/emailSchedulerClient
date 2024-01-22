@@ -1,1 +1,30 @@
-<p>edit-group works!</p>
+<div>
+  <table mat-table [dataSource]="groupList" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Group Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Group Recipients Column -->
+    <ng-container matColumnDef="recipients">
+      <th mat-header-cell *matHeaderCellDef>Recipients</th>
+      <td mat-cell *matCellDef="let element">{{ element.recipients }}</td>
+    </ng-container>
+
+    <!-- WButton -->
+    <ng-container matColumnDef="functions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon (click)="edit($event)">edit</mat-icon>
+        <mat-icon (click)="delete($event)">delete</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
